@@ -16,8 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun SecondScreen(navigateToFirstScreen: () -> Unit) {
-    val name = remember { mutableStateOf("") }
+fun SecondScreen(name: String, navigateToFirstScreen: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -26,7 +25,7 @@ fun SecondScreen(navigateToFirstScreen: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("This is the second screen", fontSize = 24.sp)
-        OutlinedTextField(value = name.value, onValueChange = { name.value = it })
+        Text("Welcome $name", fontSize = 24.sp)
         Button(onClick = {
             navigateToFirstScreen()
         }) {

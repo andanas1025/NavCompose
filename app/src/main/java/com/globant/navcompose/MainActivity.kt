@@ -37,12 +37,13 @@ fun Greeting(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "firstscreen") {
         composable("firstscreen") {
-            FirstScreen {
-                navController.navigate("secondscreen")
+            FirstScreen { name ->
+                navController.navigate("secondscreen/$name")
             }
         }
-        composable("secondscreen") {
-            SecondScreen {
+        composable("secondscreen/{name}") {
+            val name = it.arguments?.getString("name") ?: "No name"
+            SecondScreen(name) {
                 navController.navigate("firstscreen")
             }
         }
